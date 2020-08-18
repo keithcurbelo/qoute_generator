@@ -1,1 +1,1 @@
-# qoute_generator
+# Qoute Generator

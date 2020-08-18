@@ -1,0 +1,10 @@
+html {
+  box-sizing: border-box;
+  /* this will stop padding from streching the page  or adding extra height*/
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: dodgerblue;
+}
