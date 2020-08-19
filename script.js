@@ -3,9 +3,25 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
+
+// Show Loading
+const loading = () => {
+  loader.hidden = false;
+  quoteContainer.hidden = true;
+};
+
+//Hide Loading
+const complete = () => {
+  if (!loader.hidden) {
+    quoteContainer.hidden = false;
+    loader.hidden = true;
+  }
+};
 
 //Get quote from api
 const getQuote = async () => {
+  loading();
   const proxyUrl = "https://api.allorigins.win/get?url=";
   const apiUrl =
     "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
@@ -22,6 +38,8 @@ const getQuote = async () => {
       quoteText.classList.remove("long-quote");
     }
     quoteText.innerText = data.quoteText;
+    //Stop loader and show quote
+    complete();
   } catch (error) {
     // getQuote();
     console.log("No quote", error);
@@ -41,3 +59,4 @@ newQuoteBtn.addEventListener("click", getQuote);
 twitterBtn.addEventListener("click", tweetQuote);
 //On load
 getQuote();
+// loading();
